@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>To-Do List</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 	<link rel="stylesheet" type="text/css" href="main.css">
+
+ 	<script type="text/javascript">
+		var myArray = [];
+		var i=0;
+		var element;
+
+		function createActivity(arr){
+			var indexnumber=i;
+			var para = document.createElement("text");
+			var btn = document.createElement("BUTTON");
+			var br = document.createElement("br");
+			var nodeText = document.createTextNode(arr);
+			var nodeBtn = document.createTextNode("Delete Activity");
+			para.appendChild(nodeText);
+			btn.appendChild(nodeBtn);
+			btn.setAttribute("id", ""+indexnumber+"");
+			btn.setAttribute("onclick", "deleteActivity("+indexnumber+", this)");
+			btn.setAttribute("type", "submit");
+			console.log(arr);
+			element = document.getElementById("prtSec");
+			element.appendChild(para);
+			element.appendChild(btn);
+			element.appendChild(br);
+			addObj(para, btn);
+		}
+		function addObj(para, btn) {
+			var myData = [para, btn];
+			myArray.push(myData);
+			i++;
+		}
+		function deleteActivity(indexnumber, ele){
+			var id = ele.id;
+			console.log(id);
+			myArray.splice(indexnumber, 1);
+			//parentElement.removeChild();
+			var elem = document.getElementById(indexnumber);
+          //  elem.element.removeChild(elem);
+
+        	elem.remove();
+
+			// ele.prototype.remove = function() {
+			// 	this.parentElement.removeChild(this);
+			// };
+			// myArray.prototype.remove = HTMLCollection.prototype.remove = function() {
+			// 	for(var j = this.length - 1; j >= 0; i--){
+			// 		if (this[j] && this[j].parentElement) {
+			// 			this[j].parentElement.removeChild(this[j]);
+			// 		}
+			// 	}
+			// };
+			// document.getElementById("ele").remove();
+		}
+
+	</script>
+
+</head>
+<body>
+	<div class="col-sm-offset-3 col-sm-6" id="header">
+		<div>
+			TO-DO LIST
+		</div>
+		<div id="prtSec"></div>
+		<p id='papp'></p>
+		
+		<div>
+			Activity:<br>
+			<input type="textarea" name="Enter Activity" id="activityText" placeholder="Enter Your Activity"><br>
+			<input type="submit" name="Add Activity" value="ADD ACTIVITY" onclick="createActivity(getElementById('activityText').value)"/>
+		</div>
+	</div>
+</body>
+</html>
